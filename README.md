@@ -63,4 +63,4 @@ nginx | 1.10 | http://nginx.org/en/download.html
 ## 搭建步骤
 
 ### Windows版
-- 本地安装开发环境中的所有工具并启动，具体参考[deploy-windows.md](doc/deploy/deploy-windows.md)
+- 本地安装开发环境中的所有工具并启动，具体参考[deploy-windows.md](doc/deploy/deploy_windows.md)
