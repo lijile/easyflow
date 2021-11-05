@@ -5,9 +5,9 @@ easyflow 是一个简单、易用、高效的流程审批项目
 
 
 ### 项目演示
-![](doc\images\leave_flow.jpg)
-![](doc\images\task_list.jpg)
-![](doc\images\task_approve.jpg)
+![](https://raw.githubusercontent.com/lijile/easyflow/master/doc/images/leave_flow.jpg)
+![](https://raw.githubusercontent.com/lijile/easyflow/master/doc/images/task_list.jpg)
+![](https://raw.githubusercontent.com/lijile/easyflow/master/doc/images/task_approve.jpg)
 
 
 
