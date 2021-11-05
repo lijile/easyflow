@@ -1,0 +1,34 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/easyflow?useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=UTC
+    username: easyflow_user
+    password: easyflow@2021
+    # springboot2.0以后默认连接池Hikari，不需要引入依赖，号称“史上最快连接池”
+    hikari:
+      # 最小空闲连接数量，默认值：1
+      minimum-idle: 5
+      # 自动提交，默认值：true
+      auto-commit: true
+      # 连接后测试语句
+      connection-test-query: SELECT 1
+log:
+  # 日志基础目录
+  basedir: D:/logs/
+logging:
+  level:
+    # 打印sql日志
+    org.lecoder.easyflow.modules.core.mapper: debug
+    org.lecoder.easyflow.modules.sys.mapper: debug
+    org.lecoder.easyflow.modules.leave.mapper: debug
+org:
+  lecoder:
+    easyflow:
+      interceptor:
+        excluded-urls:
+          - /sys/user/login
+          - /sys/user/logout
+          - /swagger-ui.html # swagger免登陆地址
+          - /v2/**
+          - /swagger-resources/**
+          - /webjars/**

@@ -1,0 +1,24 @@
+spring:
+  profiles:
+    active: test
+  application:
+    name: easyflow
+  servlet:
+    multipart:
+      # 上传最大文件大小
+      max-file-size: 50MB
+server:
+  servlet:
+    context-path: /easyflow/api
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    auto-mapping-behavior: full
+  mapper-locations: classpath*:mapper/**/*Mapper.xml
+org:
+  lecoder:
+    easyflow:
+      interceptor:
+        excluded-urls: # 免登陆地址
+          - /sys/user/login
+          - /sys/user/logout

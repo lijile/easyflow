@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.lecoder.easyflow.modules.core.mapper.FlowInstanceMapper">
+    <select id="taskPage" resultType="org.lecoder.easyflow.modules.core.dto.TaskInstanceDTO">
+        select t1.*, t2.task_code, t2.action_status
+        from flow_instance t1, flow_instance_node t2
+        where t1.instance_code = t2.instance_code and
+            ${ew.sqlSegment}
+    </select>
+</mapper>
