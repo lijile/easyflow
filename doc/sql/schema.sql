@@ -105,5 +105,14 @@ create table leave_apply
     gmt_modified  datetime    not null default current_timestamp on update current_timestamp
 ) comment '请假申请表';
 
-
+drop table if exists leave_employee;
+create table leave_employee
+(
+    id           bigint unsigned auto_increment primary key,
+    username     varchar(50) comment '用户名',
+    gender       tinyint comment '性别,女1男2',
+    annual_days  int comment '剩余年假天数',
+    gmt_create   datetime          default current_timestamp,
+    gmt_modified datetime not null default current_timestamp on update current_timestamp
+) comment '请假员工信息';
 

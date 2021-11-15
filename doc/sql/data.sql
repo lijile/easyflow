@@ -15,3 +15,7 @@ insert into flow_definition_node(definition_code, parent_code, node_code, node_n
 -- 流程定义节点（分支2）
 insert into flow_definition_node(definition_code, parent_code, node_code, node_name, condition_script, rel_class, priority) values('leave_common', null, 'dept_manager_2', '部门经理', null, 'org.lecoder.easyflow.modules.core.node.DeptManager', 0);
 insert into flow_definition_node(definition_code, parent_code, node_code, node_name, condition_script, rel_class, priority) values('leave_common', 'dept_manager_2', 'hr_manager_2', '人事部经理', 'days >= 5', 'org.lecoder.easyflow.modules.core.node.HrManager', 0);
+
+
+-- 请假员工扩展信息
+insert into leave_employee(username, gender, annual_days) values('xialuo', 2, 10);

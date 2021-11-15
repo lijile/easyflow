@@ -28,10 +28,19 @@ public enum  FlowModuleEnum {
         return null;
     }
 
+    /**
+     * 模块id，唯一
+     */
     private String moduleId;
 
+    /**
+     * 模块名称
+     */
     private String moduleName;
 
+    /**
+     * 模块对应的核心服务接口，用于回调
+     */
     private Class<? extends IFlowBaseService> serviceClass;
 
 }
