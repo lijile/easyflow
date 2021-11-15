@@ -30,7 +30,7 @@ public class FlowApiServiceTest {
     public void start() {
         Map<String, Object> variables = new HashMap<>();
         variables.put("type", "事假");
-        variables.put("day", new BigDecimal(3));
+        variables.put("days", new BigDecimal(3));
         String instanceCode = flowApiService.start(FlowModuleEnum.LEAVE, "leave_common", variables);
         Assert.assertNotNull(instanceCode);
     }
@@ -44,7 +44,7 @@ public class FlowApiServiceTest {
     public void preview() {
         Map<String, Object> variables = new HashMap<>();
         variables.put("type", "事假");
-        variables.put("day", new BigDecimal(7));
+        variables.put("days", new BigDecimal(7));
         List<FlowInstanceNode> instanceNodeList = flowApiService.preview("leave_common", variables);
         Assert.assertTrue(instanceNodeList.size() > 0);
         for (int i = 0; i < instanceNodeList.size(); i++) {

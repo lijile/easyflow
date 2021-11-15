@@ -36,7 +36,7 @@ create table flow_definition_node
     node_name        varchar(50)  not null comment '节点名称',
     condition_script varchar(100) comment '条件脚本',
     rel_class        varchar(200) not null comment '关联类的全路径',
-    priority         int          not null default 0 comment '优先级',
+    priority         int          not null default 0 comment '分支优先级',
     gmt_create       datetime              default current_timestamp,
     gmt_modified     datetime     not null default current_timestamp on update current_timestamp
 ) comment '流程定义节点表';

@@ -3,6 +3,7 @@ package org.lecoder.easyflow.modules.core.service.impl;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.lecoder.easyflow.common.toolkit.Constants;
 import org.lecoder.easyflow.modules.core.entity.FlowDefinitionNode;
 import org.lecoder.easyflow.modules.core.entity.FlowVariable;
 import org.lecoder.easyflow.modules.core.mapper.FlowDefinitionNodeMapper;
@@ -29,7 +30,7 @@ public class FlowDefinitionNodeServiceImpl extends ServiceImpl<FlowDefinitionNod
     @Override
     public FlowDefinitionNode getNextDefinitionCode(String definitionCode, String parentCode, List<FlowVariable> variableList) {
         QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.eq("definition_code", definitionCode);
+        queryWrapper.eq(Constants.DEFINITION_CODE, definitionCode);
         if (parentCode == null) {
             queryWrapper.isNull("parent_code");
         } else {
