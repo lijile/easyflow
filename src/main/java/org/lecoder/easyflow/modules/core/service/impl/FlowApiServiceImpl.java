@@ -82,6 +82,7 @@ public class FlowApiServiceImpl implements IFlowApiService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public FlowInstance disagree(String taskCode, String note) {
         // 检查当前节点
         FlowInstanceNode instanceNode = getWaitNode(taskCode);
@@ -111,6 +112,7 @@ public class FlowApiServiceImpl implements IFlowApiService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public List<FlowInstanceNode> preview(String definitionCode, Map<String, Object> variables) {
         // 检查流程定义
         FlowDefinition flowDefinition = flowDefinitionService.getOne(new QueryWrapper<FlowDefinition>().eq(Constants.DEFINITION_CODE, definitionCode));

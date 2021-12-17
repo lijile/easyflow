@@ -3,7 +3,7 @@
 - 关于IDEA的安装与使用请参考：https://github.com/judasn/IntelliJ-IDEA-Tutorial
 - 搜索插件仓库，安装插件Lombok
 
-![](..\images\Lombok.png)
+![](https://raw.githubusercontent.com/lijile/easyflow/master/doc/images/Lombok.png)
 
 
 

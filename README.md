@@ -1,3 +1,8 @@
+<p align="center">
+    <a target="_blank" href="https://www.oracle.com/technetwork/java/javase/downloads/index.html"><img src="https://img.shields.io/badge/JDK-1.8+-green.svg" /></a>
+    <a target="_blank" href="LICENSE"><img src="https://img.shields.io/:license-MIT-blue.svg"></a>
+</p>
+
 ## 项目介绍
 easyflow 是一个简单、易用、高效的流程审批项目。
 

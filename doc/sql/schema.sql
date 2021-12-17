@@ -38,7 +38,8 @@ create table flow_definition_node
     rel_class        varchar(200) not null comment '关联类的全路径',
     priority         int          not null default 0 comment '分支优先级',
     gmt_create       datetime              default current_timestamp,
-    gmt_modified     datetime     not null default current_timestamp on update current_timestamp
+    gmt_modified     datetime     not null default current_timestamp on update current_timestamp,
+    unique key uk_dncode (definition_code, node_code)
 ) comment '流程定义节点表';
 
 drop table if exists flow_instance;
