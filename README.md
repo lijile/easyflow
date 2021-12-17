@@ -15,6 +15,7 @@ easyflow参考了Activiti的优秀设计思路，取其精华，去掉不常用�
 
 
 ### 项目演示
+![](https://raw.githubusercontent.com/lijile/easyflow/master/doc/images/flow_definition.jpg)
 ![](https://raw.githubusercontent.com/lijile/easyflow/master/doc/images/task_list.jpg)
 ![](https://raw.githubusercontent.com/lijile/easyflow/master/doc/images/task_approve.jpg)
 
