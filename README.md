@@ -1,4 +1,9 @@
 <p align="center">
+    <a href="https://github.com/lijile/easyflow" target="_blank">
+        <img src="https://img-blog.csdnimg.cn/fbcac5c9975f47a29b8fea76ec995ba2.png#pic_center" width="100px"/>
+    </a>
+</p>
+<p align="center">
     <a target="_blank" href="https://www.oracle.com/technetwork/java/javase/downloads/index.html"><img src="https://img.shields.io/badge/JDK-1.8+-green.svg" /></a>
     <a target="_blank" href="LICENSE"><img src="https://img.shields.io/:license-MIT-blue.svg"></a>
 </p>
@@ -40,6 +45,7 @@ easyflow参考了Activiti的优秀设计思路，取其精华，去掉不常用�
 | React      | 前端框架       | https://react.docschina.org/                 |
 | Umi        | 阿里系前端框架 | https://umijs.org/zh-CN/docs/getting-started |
 | Ant Design | 前端组件       | https://ant.design/components/overview-cn/   |
+| Antv/xflow | 蚂蚁系图编辑引擎       | https://xflow.antv.vision/zh-CN   |
 
 
 
@@ -70,3 +76,4 @@ nginx | 1.10 | http://nginx.org/en/download.html
 
 ### Windows版
 - 本地安装开发环境中的所有工具并启动，具体参考[deploy-windows.md](doc/deploy/deploy_windows.md)
+- 前端项目请转至 https://github.com/lijile/easyflow-html
