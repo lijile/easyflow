@@ -2,7 +2,7 @@ package org.lecoder.easyflow.modules.sys.controller;
 
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.lecoder.easyflow.common.toolkit.NetworkUtils;
@@ -99,14 +99,9 @@ public class UserController {
     @ApiOperation("用户搜索")
     @GetMapping("/search")
     public CommonResult search(String keyword) {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        QueryWrapper queryWrapper = new QueryWrapper<>();
+        LambdaQueryWrapper<SysUser> queryWrapper = new LambdaQueryWrapper<>();
         if (StrUtil.isNotBlank(keyword)) {
-            queryWrapper.likeRight("fullname", keyword);
+            queryWrapper.likeRight(SysUser::getFullname, keyword);
         }
         queryWrapper.last("limit 10");
         List<SysUser> sysUserList = userService.list(queryWrapper);

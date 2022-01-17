@@ -1,7 +1,7 @@
 package org.lecoder.easyflow.modules.sys.service.impl;
 
 import cn.hutool.crypto.SecureUtil;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.lecoder.easyflow.common.exception.FlowException;
 import org.lecoder.easyflow.modules.sys.constant.CacheConsts;
@@ -29,7 +29,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
     @Override
     public UserDTO login(LoginFormDTO loginFormDTO) {
-        SysUser user = userMapper.selectOne(new QueryWrapper<SysUser>().eq("username", loginFormDTO.getUsername()));
+        SysUser user = userMapper.selectOne(new LambdaQueryWrapper<SysUser>().eq(SysUser::getUsername, loginFormDTO.getUsername()));
         if (user == null || !user.getPassword().equals(SecureUtil.md5(loginFormDTO.getPassword()))) {
             throw new FlowException("用户名或密码错误！");
         }

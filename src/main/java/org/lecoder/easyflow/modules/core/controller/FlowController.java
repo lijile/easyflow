@@ -1,11 +1,10 @@
 package org.lecoder.easyflow.modules.core.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.lecoder.easyflow.common.toolkit.Constants;
 import org.lecoder.easyflow.common.toolkit.SpringContextHolder;
 import org.lecoder.easyflow.common.web.CommonResult;
 import org.lecoder.easyflow.modules.core.dto.ApproveFormDTO;
@@ -67,10 +66,10 @@ public class FlowController {
     @GetMapping("/detail")
     public CommonResult detail(String instanceCode) {
         FlowDetailVO flowDetailVO = new FlowDetailVO();
-        FlowInstance instance = instanceService.getOne(new QueryWrapper<FlowInstance>().eq(Constants.INSTANCE_CODE, instanceCode));
+        FlowInstance instance = instanceService.getOne(new LambdaQueryWrapper<FlowInstance>().eq(FlowInstance::getInstanceCode, instanceCode));
         flowDetailVO.setInstance(instance);
 
-        List<FlowInstanceNode> nodeList = instanceNodeService.list(new QueryWrapper<FlowInstanceNode>().eq(Constants.INSTANCE_CODE, instanceCode));
+        List<FlowInstanceNode> nodeList = instanceNodeService.list(new LambdaQueryWrapper<FlowInstanceNode>().eq(FlowInstanceNode::getInstanceCode, instanceCode));
         flowDetailVO.setNodeList(nodeList);
 
         EnumSet<FlowActionEnum> actions = flowService.countActions(instance, nodeList);

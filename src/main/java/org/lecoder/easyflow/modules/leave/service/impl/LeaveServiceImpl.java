@@ -1,10 +1,10 @@
 package org.lecoder.easyflow.modules.leave.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.lecoder.easyflow.common.exception.FlowException;
-import org.lecoder.easyflow.common.toolkit.Constants;
 import org.lecoder.easyflow.common.toolkit.RequestHolder;
 import org.lecoder.easyflow.common.toolkit.SpringContextHolder;
 import org.lecoder.easyflow.modules.core.entity.FlowInstance;
@@ -64,7 +64,7 @@ public class LeaveServiceImpl implements ILeaveService {
         leaveApply.setLeaveDay(days);
         leaveApply.setInstanceCode(instanceCode);
         leaveApplyService.save(leaveApply);
-        return leaveApplyService.getOne(new QueryWrapper<LeaveApply>().eq(Constants.INSTANCE_CODE, instanceCode));
+        return leaveApplyService.getOne(new LambdaQueryWrapper<LeaveApply>().eq(LeaveApply::getInstanceCode, instanceCode));
     }
 
     @Override
@@ -88,14 +88,14 @@ public class LeaveServiceImpl implements ILeaveService {
 
     @Override
     public Object getApplyForm(String instanceCode) {
-        return leaveApplyService.getOne(new QueryWrapper<LeaveApply>().eq(Constants.INSTANCE_CODE, instanceCode));
+        return leaveApplyService.getOne(new LambdaQueryWrapper<LeaveApply>().eq(LeaveApply::getInstanceCode, instanceCode));
     }
 
     @Override
     public void flowTerminated(String instanceCode) {
-        FlowInstance flowInstance = flowInstanceService.getOne(new QueryWrapper<FlowInstance>().eq(Constants.INSTANCE_CODE, instanceCode));
+        FlowInstance flowInstance = flowInstanceService.getOne(new LambdaQueryWrapper<FlowInstance>().eq(FlowInstance::getInstanceCode, instanceCode));
         // 被动调用，恢复剩余假期天数等
-        LeaveApply leaveApply = leaveApplyService.getOne(new QueryWrapper<LeaveApply>().eq(Constants.INSTANCE_CODE, instanceCode));
+        LeaveApply leaveApply = leaveApplyService.getOne(new LambdaQueryWrapper<LeaveApply>().eq(LeaveApply::getInstanceCode, instanceCode));
         LeaveTypeEnum leaveTypeEnum = LeaveTypeEnum.get(leaveApply.getType());
         if (leaveTypeEnum != null) {
             ILeaveTypeHandler handler = SpringContextHolder.getBean(leaveTypeEnum.getHandlerClass());

@@ -1,14 +1,13 @@
 package org.lecoder.easyflow.modules.core.service.impl;
 
 import cn.hutool.core.util.RandomUtil;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import org.lecoder.easyflow.common.toolkit.Constants;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.lecoder.easyflow.common.toolkit.RequestHolder;
 import org.lecoder.easyflow.modules.core.entity.FlowInstance;
 import org.lecoder.easyflow.modules.core.enums.FlowModuleEnum;
 import org.lecoder.easyflow.modules.core.mapper.FlowInstanceMapper;
 import org.lecoder.easyflow.modules.core.service.IFlowInstanceService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.lecoder.easyflow.modules.sys.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,7 +30,7 @@ public class FlowInstanceServiceImpl extends ServiceImpl<FlowInstanceMapper, Flo
         flowInstance.setInstanceCode(instanceCode);
         flowInstance.setDefinitionCode(definitionCode);
         flowInstanceMapper.insert(flowInstance);
-        return flowInstanceMapper.selectOne(new QueryWrapper<FlowInstance>().eq(Constants.INSTANCE_CODE, instanceCode));
+        return flowInstanceMapper.selectOne(new LambdaQueryWrapper<FlowInstance>().eq(FlowInstance::getInstanceCode, instanceCode));
     }
 
     @Override
@@ -46,7 +45,7 @@ public class FlowInstanceServiceImpl extends ServiceImpl<FlowInstanceMapper, Flo
         flowInstance.setModuleId(flowModuleEnum.getModuleId());
         flowInstance.setModuleName(flowModuleEnum.getModuleName());
         flowInstanceMapper.insert(flowInstance);
-        return flowInstanceMapper.selectOne(new QueryWrapper<FlowInstance>().eq(Constants.INSTANCE_CODE, instanceCode));
+        return flowInstanceMapper.selectOne(new LambdaQueryWrapper<FlowInstance>().eq(FlowInstance::getInstanceCode, instanceCode));
     }
 
     @Autowired private FlowInstanceMapper flowInstanceMapper;

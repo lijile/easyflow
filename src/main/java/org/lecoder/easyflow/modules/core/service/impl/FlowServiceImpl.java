@@ -1,5 +1,6 @@
 package org.lecoder.easyflow.modules.core.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -87,7 +88,7 @@ public class FlowServiceImpl implements IFlowService {
         if (!canApprove(node)) {
             throw new FlowException("不支持该操作");
         }
-        SysUser targetUser = userService.getOne(new QueryWrapper<SysUser>().eq("username", username));
+        SysUser targetUser = userService.getOne(new LambdaQueryWrapper<SysUser>().eq(SysUser::getUsername, username));
         NodeUserDTO nodeUser = new NodeUserDTO();
         BeanUtils.copyProperties(targetUser, nodeUser);
         flowApiService.changeNode(taskCode, nodeUser);

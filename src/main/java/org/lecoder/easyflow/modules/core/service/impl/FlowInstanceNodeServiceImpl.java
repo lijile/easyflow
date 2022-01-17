@@ -2,8 +2,8 @@ package org.lecoder.easyflow.modules.core.service.impl;
 
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.ReflectUtil;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import org.lecoder.easyflow.common.toolkit.Constants;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.lecoder.easyflow.modules.core.dto.NodeTaskDTO;
 import org.lecoder.easyflow.modules.core.dto.NodeUserDTO;
 import org.lecoder.easyflow.modules.core.entity.FlowDefinitionNode;
@@ -13,7 +13,6 @@ import org.lecoder.easyflow.modules.core.enums.NodeStatusEnum;
 import org.lecoder.easyflow.modules.core.mapper.FlowInstanceNodeMapper;
 import org.lecoder.easyflow.modules.core.node.BaseNode;
 import org.lecoder.easyflow.modules.core.service.IFlowInstanceNodeService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -61,7 +60,7 @@ public class FlowInstanceNodeServiceImpl extends ServiceImpl<FlowInstanceNodeMap
 
     @Override
     public FlowInstanceNode getByTaskCode(String taskCode) {
-        QueryWrapper queryWrapper = new QueryWrapper<>().eq(Constants.TASK_CODE, taskCode);
+        LambdaQueryWrapper queryWrapper = new LambdaQueryWrapper<FlowInstanceNode>().eq(FlowInstanceNode::getTaskCode, taskCode);
         return getOne(queryWrapper);
     }
 }

@@ -1,9 +1,8 @@
 package org.lecoder.easyflow.modules.core.service.impl;
 
 import cn.hutool.core.util.StrUtil;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.lecoder.easyflow.common.toolkit.Constants;
 import org.lecoder.easyflow.modules.core.entity.FlowDefinitionNode;
 import org.lecoder.easyflow.modules.core.entity.FlowVariable;
 import org.lecoder.easyflow.modules.core.mapper.FlowDefinitionNodeMapper;
@@ -29,14 +28,14 @@ public class FlowDefinitionNodeServiceImpl extends ServiceImpl<FlowDefinitionNod
 
     @Override
     public FlowDefinitionNode getNextDefinitionCode(String definitionCode, String parentCode, List<FlowVariable> variableList) {
-        QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.eq(Constants.DEFINITION_CODE, definitionCode);
+        LambdaQueryWrapper<FlowDefinitionNode> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(FlowDefinitionNode::getDefinitionCode, definitionCode);
         if (parentCode == null) {
-            queryWrapper.isNull("parent_code");
+            queryWrapper.isNull(FlowDefinitionNode::getParentCode);
         } else {
-            queryWrapper.eq("parent_code", parentCode);
+            queryWrapper.eq(FlowDefinitionNode::getParentCode, parentCode);
         }
-        queryWrapper.orderByDesc("priority");
+        queryWrapper.orderByDesc(FlowDefinitionNode::getPriority);
         List<FlowDefinitionNode> definitionNodeList = flowDefinitionNodeMapper.selectList(queryWrapper);
         for (FlowDefinitionNode definitionNode : definitionNodeList) {
             if (StrUtil.isEmpty(definitionNode.getConditionScript())) {

@@ -1,8 +1,7 @@
 package org.lecoder.easyflow.modules.core.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.lecoder.easyflow.common.exception.FlowException;
-import org.lecoder.easyflow.common.toolkit.Constants;
 import org.lecoder.easyflow.modules.core.dto.NodeUserDTO;
 import org.lecoder.easyflow.modules.core.entity.*;
 import org.lecoder.easyflow.modules.core.enums.FlowModuleEnum;
@@ -31,7 +30,7 @@ public class FlowApiServiceImpl implements IFlowApiService {
     @Transactional(rollbackFor = Exception.class)
     public String start(FlowModuleEnum flowModuleEnum, String definitionCode, Map<String, Object> variables) {
         // 检查流程定义
-        FlowDefinition flowDefinition = flowDefinitionService.getOne(new QueryWrapper<FlowDefinition>().eq(Constants.DEFINITION_CODE, definitionCode));
+        FlowDefinition flowDefinition = flowDefinitionService.getOne(new LambdaQueryWrapper<FlowDefinition>().eq(FlowDefinition::getDefinitionCode, definitionCode));
         if (flowDefinition == null) {
             throw new FlowException("流程定义不存在");
         }
@@ -68,7 +67,7 @@ public class FlowApiServiceImpl implements IFlowApiService {
         instanceNode.setNote(note);
         flowInstanceNodeService.updateById(instanceNode);
 
-        List<FlowVariable> variableList = flowVariableService.list(new QueryWrapper<FlowVariable>().eq(Constants.INSTANCE_CODE, instance.getInstanceCode()));
+        List<FlowVariable> variableList = flowVariableService.list(new LambdaQueryWrapper<FlowVariable>().eq(FlowVariable::getInstanceCode, instance.getInstanceCode()));
         FlowDefinitionNode definitionNode = flowDefinitionNodeService.getNextDefinitionCode(instance.getDefinitionCode(), instanceNode.getNodeCode(), variableList);
         if (definitionNode == null) {
             // 流程结束
@@ -115,7 +114,7 @@ public class FlowApiServiceImpl implements IFlowApiService {
     @Transactional(rollbackFor = Exception.class)
     public List<FlowInstanceNode> preview(String definitionCode, Map<String, Object> variables) {
         // 检查流程定义
-        FlowDefinition flowDefinition = flowDefinitionService.getOne(new QueryWrapper<FlowDefinition>().eq(Constants.DEFINITION_CODE, definitionCode));
+        FlowDefinition flowDefinition = flowDefinitionService.getOne(new LambdaQueryWrapper<FlowDefinition>().eq(FlowDefinition::getDefinitionCode, definitionCode));
         if (flowDefinition == null) {
             throw new FlowException("流程定义不存在");
         }
@@ -136,7 +135,7 @@ public class FlowApiServiceImpl implements IFlowApiService {
             // 生成流程节点
             parentNodeId = flowInstanceNodeService.saveInstanceNode(flowInstance, parentNodeId, flowDefinitionNode);
         }
-        return flowInstanceNodeService.list(new QueryWrapper<FlowInstanceNode>().eq(Constants.INSTANCE_CODE, flowInstance.getInstanceCode()));
+        return flowInstanceNodeService.list(new LambdaQueryWrapper<FlowInstanceNode>().eq(FlowInstanceNode::getInstanceCode, flowInstance.getInstanceCode()));
     }
 
     private FlowInstanceNode getWaitNode(String taskCode) {
@@ -148,7 +147,7 @@ public class FlowApiServiceImpl implements IFlowApiService {
     }
 
     private FlowInstance getInProgressInstance(String instanceCode) {
-        FlowInstance instance = flowInstanceService.getOne(new QueryWrapper<FlowInstance>().eq(Constants.INSTANCE_CODE, instanceCode));
+        FlowInstance instance = flowInstanceService.getOne(new LambdaQueryWrapper<FlowInstance>().eq(FlowInstance::getInstanceCode, instanceCode));
         if (instance == null || !InstanceStatusEnum.inProgress(instance.getStatus())) {
             throw new FlowException("流程不存在");
         }
