@@ -14,13 +14,13 @@ easyflow 是一个简单、易用、高效的流程审批项目。
 目前有不少的工作流引擎项目，例如JBPM、Activiti、Flowable等等，但是有个比较普遍存在的问题是，过于复杂，不易上手。
 举个栗子，Activiti6.0以act_开头的核心数据表有28个之多，执行一个简单的流程涉及数据库操作太多，优化困难。
 
-easyflow参考了Activiti的优秀设计思路，取其精华，去掉不常用功能，核心数据库仅此5个，一个简单的工作流，只需要执行几行语句即可生成。
+easyflow参考了Activiti的优秀设计思路，取其精华，去掉不常用功能，核心数据库仅此5个，一个简单的工作流，只需要执行几行语句即可生成。支持在线编辑流程。
 
 
 
 
 ### 项目演示
-![](https://raw.githubusercontent.com/lijile/easyflow/master/doc/images/flow_definition.jpg)
+![](https://raw.githubusercontent.com/lijile/easyflow/master/doc/images/flow_definition_v2.jpg)
 ![](https://raw.githubusercontent.com/lijile/easyflow/master/doc/images/task_list.jpg)
 ![](https://raw.githubusercontent.com/lijile/easyflow/master/doc/images/task_approve.jpg)
 
