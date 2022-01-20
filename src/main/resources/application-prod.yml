@@ -15,6 +15,10 @@ spring:
 log:
   # 日志基础目录
   basedir: /app/logs
+springfox:
+  documentation:
+    # 删除环境禁止swagger
+    enabled: false
 org:
   lecoder:
     easyflow:

@@ -28,7 +28,8 @@ org:
         excluded-urls:
           - /sys/user/login
           - /sys/user/logout
-          - /swagger-ui.html # swagger免登陆地址
+          - /swagger-ui/** # swagger免登陆地址
           - /v2/**
+          - /v3/**
           - /swagger-resources/**
           - /webjars/**

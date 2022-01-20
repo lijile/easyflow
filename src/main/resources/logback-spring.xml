@@ -26,8 +26,14 @@
     </appender>
 
     <!-- 日志输出级别 -->
-    <root level="INFO">
-        <appender-ref ref="STDOUT" />
-        <appender-ref ref="FILE"/>
-    </root>
+    <springProfile name="prod">
+        <root level="INFO">
+            <appender-ref ref="FILE"/>
+        </root>
+    </springProfile>
+    <springProfile name="test">
+        <root level="INFO">
+            <appender-ref ref="STDOUT" />
+        </root>
+    </springProfile>
 </configuration>
