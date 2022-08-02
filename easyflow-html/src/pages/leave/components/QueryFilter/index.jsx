@@ -1,0 +1,52 @@
+import React from 'react';
+import { Form, Select, DatePicker, Button } from 'antd';
+import { SearchOutlined, PlusOutlined } from '@ant-design/icons';
+import { formatDate } from '@/utils/basic';
+import { LEAVE_TYPES } from '@/utils/consts';
+import styles from './index.less';
+
+const QueryFilter = ({ initialValues, onSearch, onCreate }) => {
+  const [form] = Form.useForm();
+  return (
+    <Form
+      layout="inline"
+      form={form}
+      initialValues={initialValues}
+      onFinish={() => {
+        const values = form.getFieldsValue();
+        const { dateRange } = values;
+        if (dateRange) {
+          values['startDate'] = formatDate(dateRange[0]);
+          values['endDate'] = formatDate(dateRange[1]);
+          delete values.dateRange;
+        }
+        onSearch(values);
+      }}
+    >
+      <Form.Item label="类型" name="type">
+        <Select className={styles.formitem}>
+          {
+            LEAVE_TYPES.map(item => <Select.Option key={item}>{item}</Select.Option>)
+          }
+        </Select>
+      </Form.Item>
+      <Form.Item label="日期" name="dateRange">
+        <DatePicker.RangePicker />
+      </Form.Item>
+      <Form.Item>
+        <Button
+          icon={<SearchOutlined />}
+          type="primary"
+          htmlType="submit"
+          style={{ marginRight: 20 }}
+        >
+          搜索
+        </Button>
+        <Button icon={<PlusOutlined />} onClick={onCreate} style={{ marginRight: 20 }}>
+          新建
+        </Button>
+      </Form.Item>
+    </Form>
+  );
+};
+export default QueryFilter;

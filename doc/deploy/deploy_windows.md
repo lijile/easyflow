@@ -20,10 +20,26 @@
 ## 启动后端项目
 
 - 直接运行 org.lecoder.easyflow.EasyflowApplication 的main方法即可；
-- 接口文档地址：http://localhost:8080/easyflow/api/swagger-ui.html
+- 接口文档地址：http://localhost:8080/swagger-ui/
 
 
-
-## 启动前端项目
-
-请参考 easyflow-html
+## 构建项目
+- 构建前端项目
+```
+# 进入根目录下的easyflow-html
+cd easyflow-html
+# 安装依赖
+npm install
+# 执行构建
+npm run build
+```
+- 打包jar
+```
+# 进入根目录
+cd easyflow
+# 执行构建
+mvn clean package -Dmaven.test.skip=true
+# 运行jar包
+java -jar target/easyflow-1.0.0.jar
+```
+- 访问地址：http://localhost:8080/public/index.html

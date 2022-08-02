@@ -68,7 +68,6 @@ PicPick | 屏幕取色工具 | https://picpick.app/zh/
 ----|----|----
 JDK | 1.8 | https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 Mysql | 8.0 | https://www.mysql.com/
-nginx | 1.10 | http://nginx.org/en/download.html
 
 
 
@@ -76,4 +75,3 @@ nginx | 1.10 | http://nginx.org/en/download.html
 
 ### Windows版
 - 本地安装开发环境中的所有工具并启动，具体参考[deploy-windows.md](doc/deploy/deploy_windows.md)
-- 前端项目请转至 https://github.com/lijile/easyflow-html

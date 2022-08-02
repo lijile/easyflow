@@ -26,3 +26,4 @@ org:
         excluded-urls:
           - /sys/user/login
           - /sys/user/logout
+          - /public/**
